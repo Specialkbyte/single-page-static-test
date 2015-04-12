@@ -1,0 +1,34 @@
+li.feed-item.donate
+  header
+    span.icon
+      i.fa.fa-heart
+    span.time
+      if locals.time
+        = moment(time*1000).fromNow()
+      else
+        = moment().fromNow()
+  if locals.team
+    .team-info
+      img(src="#{team.avatar}", width="50", height="50").radius
+      h4
+        a(href="/teams/#{team.slug}")
+          | #{team.names}
+          span.label.round(class="#{team.university.toLowerCase()}") #{team.university}
+          span.label.round
+            = Humanize.ordinal(team.position)
+  if locals.description
+    p.description 
+      = description
+  .footer.clearfix
+    if locals.team
+      a(href="/donate/#{team.slug}").button.round.right
+        if locals.linkText
+          = linkText
+        else
+          | Donate
+    else
+      a(href="/donate").button.round.right
+        if locals.linkText
+          = linkText
+        else
+          | Donate

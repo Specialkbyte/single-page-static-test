@@ -1,0 +1,47 @@
+include helpers/mixins.jade
+
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    
+    title JailbreakHQ 2015 a global race in aid of Amnesty International and Society St. Vincent de Paul
+    
+    meta(name='description', content='Jailbreak 2015 is a student-run charity event that sends students racing across the world to raise €100,000 for Amnesty International and Society St. Vincent de Paul')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    // CSS
+    +targethtml('dev')
+      link(rel='stylesheet', href='/build/styles/main.css')
+
+    +targethtml('deployed')
+      link(rel='stylesheet', href='//builds.jailbreakhq.org/spa/dist/styles/main.css')
+
+    link(href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', rel='stylesheet')
+
+    // JS
+    include helpers/jsconfig.jade
+
+    +targethtml('dev')
+      script(src='/components/requirejs/require.js')  
+      script.
+        require(['/build/scripts/common.js'], function (common) {
+          require(['main']);
+        });
+
+    +targethtml('deployed')
+      script(src='//builds.jailbreakhq.org/spa/dist/scripts/require.js')
+      script(src='//builds.jailbreakhq.org/spa/dist/scripts/main.js')
+
+  body
+    #wrapper
+      include helpers/header.jade
+
+      #body-container
+        //- Backbone App will inject the page contents in here
+        .loading
+          .ball
+          p LOADING
+
+      include helpers/footer.jade

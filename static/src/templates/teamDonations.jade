@@ -1,0 +1,17 @@
+h3.section-header.show-for-large-up Recent Donations
+ul#donations.donations-list
+  each donation in donations
+    li
+      .row.small-collapse
+        .small-8.columns #{donation.name} 
+        .small-4.columns.amount 
+          em &euro;
+            = Humanize.intComma(donation.amount/100)
+        span.time
+          = moment(donation.time*1000).fromNow()
+  else
+    span There are no donations yet! Why don't you help us out? 
+      a(href="#").donate-button Donate
+
+if totalCount > donations.length
+  p.and-more and #{totalCount-donations.length} other donations

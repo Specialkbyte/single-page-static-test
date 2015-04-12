@@ -1,0 +1,11 @@
+a.th.radius(href="/teams/#{slug}")
+  img(src="#{avatar}", width=150, height=150)
+h3
+  a(href="/teams/#{slug}")
+    | #{names}
+    br
+    span.label.round.position
+      = Humanize.ordinal(position)
+    span.label.round.position(class="#{university.toLowerCase()}") #{university}
+div
+  span.amount-raised &euro;#{(amountRaisedOnline+amountRaisedOffline)/100}
