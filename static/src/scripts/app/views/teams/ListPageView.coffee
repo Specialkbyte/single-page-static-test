@@ -24,6 +24,7 @@ define [
 
       @paginationView = new PaginationView
         collection: options.collection
+      @rememberView @paginationView
 
     render: =>
       @$el.html @template()
